@@ -15,7 +15,8 @@
         "moinax/tvdb": "dev-master",
         "symfony/filesystem": "2.5.*",
         "symfony/console": "2.5.*",
-        "symfony/yaml": "2.5.*"
+        "symfony/yaml": "2.5.*",
+        "symfony/process": "2.5.*"
     },
     "autoload": {
         "psr-0": { "Usu\\TvShowsRenamer": "src" }
