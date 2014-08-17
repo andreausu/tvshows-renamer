@@ -1,0 +1,5 @@
+tvdb:
+  api_key: xxx
+
+fs:
+  series_folder: "/Users/andreausuelli/Documents/Serie TV"

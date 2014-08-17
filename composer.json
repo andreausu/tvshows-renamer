@@ -1,0 +1,26 @@
+{
+    "name": "usu/tvshows-renamer",
+    "description": "",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Usu",
+            "email": "andreausu@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "moinax/tvdb": "dev-master",
+        "symfony/filesystem": "2.5.*",
+        "symfony/console": "2.5.*",
+        "symfony/yaml": "2.5.*"
+    },
+    "autoload": {
+        "psr-0": { "Usu\\TvShowsRenamer": "src" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
