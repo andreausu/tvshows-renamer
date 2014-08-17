@@ -19,7 +19,7 @@ class Renamer {
             $files = scandir($absolutePath);
             foreach ($files as $file) {
                 if (preg_match('/\.rar/i', $file)) {
-                    $process = new Process('unrar e -o- ' . $absolutePath . '/' . $file . ' ' . $absolutePath);
+                    $process = new Process('unrar e -o- \'' . $absolutePath . '/' . $file . '\' ' . $absolutePath);
                     $process->run(function ($type, $buffer) {
                         if (Process::ERR === $type) {
                             echo 'ERR > '.$buffer;
