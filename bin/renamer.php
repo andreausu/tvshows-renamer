@@ -5,8 +5,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 
-$argv[1] = 'renamer';
+array_splice($argv, 1, 0, "rename");
 
 $application = new Application();
-$application->add(new \Usu\TvShowsRenamer\Command\RenamerCommand());
-$application->run();
+$command = new \Usu\TvShowsRenamer\Command\RenamerCommand();
+$application->add($command);
+$application->run(new \Symfony\Component\Console\Input\ArgvInput($argv));
