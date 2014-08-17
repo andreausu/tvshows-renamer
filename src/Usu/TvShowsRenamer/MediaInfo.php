@@ -23,6 +23,9 @@ class MediaInfo {
     {
         $seriesName = trim($seriesName);
         $tvdb = $this->getClientInstance();
+        if (file_exists(__DIR__ . '/../../../cache/' . strtolower(preg_replace('/\W/', '_', $seriesName)))) {
+            return unserialize(file_get_contents(__DIR__ . '/../../../cache/' . strtolower(preg_replace('/\W/', '_', $seriesName))));
+        }
         try {
             $data = $tvdb->getSeries($seriesName);
         } catch(\Exception $e) {
@@ -30,6 +33,7 @@ class MediaInfo {
         }
 
         if (isset($data[0])) {
+            file_put_contents(__DIR__ . '/../../../cache/' . strtolower(preg_replace('/\W/', '_', $seriesName)), serialize($data[0]));
             return $data[0];
         } else {
             throw new \UnexpectedValueException('Series ' . $seriesName . ' not found!');
