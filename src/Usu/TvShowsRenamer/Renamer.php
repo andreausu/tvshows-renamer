@@ -38,9 +38,9 @@ class Renamer {
             }
         }
 
-        $dirName = dirname($absolutePath);
+        $dirName = basename(dirname($absolutePath));
 
-        if (preg_match('/([\w\.\s]+)(?:S(\d{1,3})E(\d{1,3})|(\d{1,3})x(\d{1,3})|(\d{3,5})).+/', $dirName, $matches)) {
+        if (preg_match('/([\w\.\s]+?)(?:S(\d{1,3})E(\d{1,3})|(\d{1,3})x(\d{1,3})|(\d{3,5})).+/', $dirName, $matches)) {
             //var_dump($matches);
             $seriesName = preg_replace('/[\s\.]+/', ' ', $matches[1]);
             $mediaInfo = new MediaInfo();
