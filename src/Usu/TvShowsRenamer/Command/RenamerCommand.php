@@ -16,8 +16,8 @@ class RenamerCommand extends Command
             ->setName('rename')
             ->setDescription('Renames a file')
             ->addArgument(
-                'filePath',
-                InputArgument::OPTIONAL,
+                'filePaths',
+                InputArgument::IS_ARRAY,
                 'Who do you want to greet?'
             )
             ->addOption(
@@ -31,20 +31,26 @@ class RenamerCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $path = $input->getArgument('filePath');
+        $paths = $input->getArgument('filePaths');
 
-        if ($input->getOption('dry-run')) {
-            // dry-run
+        foreach ($paths as $path) {
+
+            $output->writeln('<info>Started renaming ' . $path . '</info>');
+
+            if ($input->getOption('dry-run')) {
+                // dry-run
+            }
+
+            $fs = new \Symfony\Component\Filesystem\Filesystem();
+
+            if (!$fs->isAbsolutePath($path)) {
+                $path = getcwd() . '/' . $path;
+            }
+
+            $newFileName = \Usu\TvShowsRenamer\Renamer::rename($path);
+
+            $output->writeln('<info>' . $newFileName . '<info>');
+
         }
-
-        $fs = new \Symfony\Component\Filesystem\Filesystem();
-
-        if (!$fs->isAbsolutePath($path)) {
-            $path = getcwd() . '/' . $path;
-        }
-
-        $newFileName = \Usu\TvShowsRenamer\Renamer::rename($path);
-
-        $output->writeln($newFileName);
     }
 }
